@@ -4,6 +4,8 @@ const connectDB = require('./config/dbConfig');
 const signupRoutes = require('./routes/signup');
 const loginRoutes = require('./routes/login');
 const cors = require('cors');
+const cookieParser = require('cookie-parser'); // Import cookie-parser
+
 // Initialize Express app
 const app = express();
 
@@ -12,12 +14,13 @@ connectDB();
 
 // Middleware
 app.use(cors({
-    origin: 'http://localhost:4200', 
-    methods: ['GET', 'POST'], 
+    origin: 'http://localhost:4200',
+    methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true 
+    credentials: true
 }));
 app.use(express.json());
+app.use(cookieParser()); // Use cookie-parser
 
 // Routes
 app.use('/api/signup', signupRoutes);

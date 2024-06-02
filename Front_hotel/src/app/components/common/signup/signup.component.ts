@@ -47,6 +47,7 @@ export class SignupComponent implements AfterViewInit {
     });
   }
 
+
   onSubmitSignup(): void {
     if (!this.username || !this.password || !this.email) {
       return;
@@ -56,9 +57,8 @@ export class SignupComponent implements AfterViewInit {
       response => {
         this.snackBar.open(response.message || 'User created successfully', 'Close', { duration: 3000 });
         console.log('Signup successful:', response);
-
-        // Trigger the signInButton click event
-        this.signInButton.nativeElement.click();
+        this.authService.setToken(response.token);
+        this.router.navigate(['/dashboard']);
       },
       error => {
         const errorMessage = this.extractErrorMessage(error);
@@ -72,11 +72,12 @@ export class SignupComponent implements AfterViewInit {
     if (!this.loginEmail || !this.loginPassword) {
       return;
     }
-
+  
     this.authService.login(this.loginEmail, this.loginPassword).subscribe(
       response => {
         this.snackBar.open('Login successful', 'Close', { duration: 3000 });
         console.log('Login successful:', response);
+        localStorage.setItem('token', response.token); // Store token in local storage
         this.router.navigate(['/dashboard']);
       },
       error => {
@@ -86,6 +87,8 @@ export class SignupComponent implements AfterViewInit {
       }
     );
   }
+  
+
 
   private extractErrorMessage(error: any): string {
     if (error && error.error && error.error.error) {
