@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './component/common/header/header.component';
@@ -33,6 +32,7 @@ import { SignupComponent } from './component/login-signup/signup/signup.componen
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
     // * MATERIAL IMPORTS
     MatSidenavModule,
     MatToolbarModule,

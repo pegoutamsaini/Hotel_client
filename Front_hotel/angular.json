@@ -44,6 +44,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
+              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -66,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "buildTarget": "admin-panel-layout:build"
+            "browserTarget": "admin-panel-layout:build"
           },
           "configurations": {
             "production": {
-              "buildTarget": "admin-panel-layout:build:production"
+              "browserTarget": "admin-panel-layout:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "admin-panel-layout:build"
+            "browserTarget": "admin-panel-layout:build"
           }
         },
         "test": {
@@ -125,5 +126,6 @@
         }
       }
     }
-  }
+  },
+  "defaultProject": "admin-panel-layout"
 }
