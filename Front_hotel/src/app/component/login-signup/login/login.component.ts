@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 
 @Component({
@@ -8,14 +9,19 @@ import { AuthService } from 'src/app/auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
-  hide = true;
-  constructor(private authService: AuthService) { }
+  email: string = '';
+  password: string = '';
 
-  onLogin(formValues: any) {
-    this.authService.login(formValues).subscribe(response => {
-      console.log('Login successful', response);
-    }, error => {
-      console.error('Login error', error);
-    });
+  constructor(private authService: AuthService, private router: Router) {}
+
+  login(): void {
+    this.authService.login({ email: this.email, password: this.password }).subscribe(
+      response => {
+        this.router.navigate(['/']);
+      },
+      error => {
+        console.error('Login failed:', error);
+      }
+    );
   }
 }
