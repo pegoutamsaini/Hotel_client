@@ -16,7 +16,10 @@ import { ComponentComponent } from './component/component.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { LoginComponent } from './component/login-signup/login/login.component';
 import { SignupComponent } from './component/login-signup/signup/signup.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,9 +36,12 @@ import { SignupComponent } from './component/login-signup/signup/signup.componen
     AppRoutingModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
     // * MATERIAL IMPORTS
     MatSidenavModule,
     MatToolbarModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatMenuModule,
     MatIconModule,
     MatDividerModule,
